@@ -1,7 +1,14 @@
 from groq import Groq
 import os
 
-client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+def get_client():
+    global _client
+    if _client is None:
+        api_key = os.getenv("GROQ_API_KEY")
+        if not api_key:
+            raise RuntimeError("GROQ_API_KEY is not set")
+        _client = Groq(api_key=api_key)
+    return _client
 
 def groq_reply(user_msg: str) -> str:
     prompt = f"""
