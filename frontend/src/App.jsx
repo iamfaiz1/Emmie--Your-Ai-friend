@@ -54,7 +54,7 @@ function App() {
   }, [messages]);
 
   useEffect(() => {
-    const wsUrl = `ws://${window.location.hostname}:8000/ws/chat`;
+    const wsUrl = `https://emmie-ai-friend-server.onrender.com/ws/chat`;
     const ws = new WebSocket(wsUrl);
     wsRef.current = ws;
 
